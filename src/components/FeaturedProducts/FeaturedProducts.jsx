@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-
+import SkeletonCard from "../SkeletonCard/SkeletonCard";
 import ProductCard from "../ProductCard/ProductCard";
 
 export default function FeaturedProducts() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -12,6 +13,7 @@ export default function FeaturedProducts() {
       const data = await response.json();
 
       setProducts(data);
+      setLoading(false);
     }
 
     fetchProducts();
@@ -36,12 +38,18 @@ export default function FeaturedProducts() {
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-            />
-          ))}
+  
+            {loading
+                ? Array.from({ length: 4 }).map((_, index) => (
+                    <SkeletonCard key={index} />
+                ))
+                : products.map((product) => (
+                    <ProductCard
+                    key={product.id}
+                    product={product}
+                    />
+                ))}
+
         </div>
       </div>
     </section>

@@ -6,7 +6,7 @@ export default function Navbar() {
   const {cartItems, openCart,} = useCart();
 
   return (
-    <nav className="flex items-center justify-between border-b border-black/10 px-8 py-6">
+    <nav className="sticky top-0 z-30 flex items-center justify-between border-b border-black/10 bg-white/80 px-8 py-6 backdrop-blur-md">
       
       <Link to="/">
         <h1
