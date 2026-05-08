@@ -34,8 +34,6 @@ The overall visual direction takes inspiration from contemporary streetwear bran
 
 ## Screenshots
 
-> Add your project screenshots here.
-
 ### Homepage
 ![Homepage Screenshot](./screenshots/homepage.png)
 
