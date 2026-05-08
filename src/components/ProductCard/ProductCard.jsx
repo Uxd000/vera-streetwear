@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useCurrency } from "../../context/CurrencyContext";
 
 export default function ProductCard({ product }) {
+    const { currency, convertPrice } = useCurrency();
   return (
     <Link
       to={`/product/${product.id}`}
@@ -27,7 +29,7 @@ export default function ProductCard({ product }) {
         </h3>
 
         <p className="text-sm">
-          Rs. {product.priceINR}
+          {currency} {convertPrice(product.priceINR)}
         </p>
       </div>
     </Link>

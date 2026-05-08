@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import CurrencySwitcher from "../CurrencySwitcher/CurrencySwitcher";
+import { useCart } from "../../context/CartContext";
 
 export default function Navbar() {
+  const {cartItems, openCart,} = useCart();
+
   return (
-    <nav className="flex items-center justify-between px-8 py-6 border-b border-black/10">
+    <nav className="flex items-center justify-between border-b border-black/10 px-8 py-6">
+      
       <Link to="/">
         <h1
           className="text-4xl uppercase tracking-[0.3em]"
@@ -13,9 +18,23 @@ export default function Navbar() {
       </Link>
 
       <div className="flex items-center gap-8 text-xs uppercase tracking-[0.25em]">
-        <Link to="/shop">Shop</Link>
+        
+        <Link
+          to="/shop"
+          className="transition-opacity duration-300 hover:opacity-60"
+        >
+          Shop
+        </Link>
 
-        <button>Cart (0)</button>
+        <CurrencySwitcher />
+
+        <button
+          onClick={openCart}
+          className="transition-opacity duration-300 hover:opacity-60"
+        >
+          Cart ({cartItems.length})
+        </button>
+
       </div>
     </nav>
   );
